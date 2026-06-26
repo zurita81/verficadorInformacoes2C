@@ -21,6 +21,25 @@
     display: flex;
     justify-content: space-between ;
     align-items: center;
-    background-color:#F0FFFF ;
+    background-color:#196e6e ;
 
-}
+} 
+ .cartao{
+    width: 260px;
+    height: 200px;
+ }
+
+  .cartao-imagem{
+      width: 100%;
+  }
+
+  .cartao-interno{
+
+        position: relative;
+  }
+   
+  .cartao-frente, .cartao-verso{
+
+       position: absolute;
+  }
+

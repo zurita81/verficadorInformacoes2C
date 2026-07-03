@@ -1,69 +1,89 @@
-*{
+* {
     margin: 0;
     padding: 0;
-      
+    box-sizing: border-box; /* Evita que paddings quebrem o tamanho dos elementos */
 }
 
- body{
-   
+body {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     min-height: 100vh;
- }
-
- main{
-     flex: 1;
-     display: 1;
-     flex-direction: column;
-     align-items: center;
 }
 
-section{
+main {
+    flex: 1;
+    display: flex; /* CORRIGIDO de 'display: 1' para 'display: flex' */
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+section {
      display: flex;
      gap: 16px;
-
+     justify-content: center; /* Centraliza os cartões na tela */
+     flex-wrap: wrap; /* Faz os cartões irem para baixo se a tela for pequena */
 }
 
-.cabecalho{
-    color:	#8B0000;
-    padding:15px 25px ;
+.cabecalho {
+    color: #8B0000;
+    padding: 15px 25px;
     display: flex;
-    justify-content: space-between ;
+    justify-content: space-between;
     align-items: center;
-    background-color:#196e6e ;
-
+    background-color: #196e6e;
 } 
- .cartao{
+
+.cartao {
     margin: 20px;
     width: 260px;
-    height: 200px;
- }
+    height: 280px; /* Aumentei um pouco a altura para o texto não sumir */
+    perspective: 1000px; /* ADICIONADO: Essencial para o efeito 3D de giro */
+}
 
-  .cartao-imagem{
-      width: 100%;
-  }
-
-  .cartao-interno{
+.cartao-interno {
      position: relative;
+     width: 100%;  /* Garante que ocupe o tamanho do cartão */
+     height: 100%;
      transition: transform 0.8s;
      transform-style: preserve-3d;
 }
    
-    .cartao-hover .cartao-interno{
-         transform: rotateY(180deg);
-    }
+/* CORRIGIDO: Agora ativa o efeito ao passar o mouse de verdade */
+.cartao:hover .cartao-interno {
+     transform: rotateY(180deg);
+}
 
-
-  .cartao-frente, .cartao-verso{
-
+.cartao-frente, .cartao-verso {
        position: absolute;
+       width: 100%;  /* ADICIONADO: Faz as faces terem o tamanho total do cartão */
+       height: 100%; /* ADICIONADO */
        border-radius: 12px;
        box-shadow: 0 6px 12px rgba(0,0,0, 0.15);
        backface-visibility: hidden;
-  }
+       background-color: #fff; /* Fundo branco para não ver o fundo da página */
+       overflow: hidden; /* Corta a imagem nas bordas arredondadas */
+       
+       /* Alinha a imagem e o texto um embaixo do outro */
+       display: flex;
+       flex-direction: column; 
+}
  
-   .cartao-verso{
+.cartao-verso {
+    transform: rotateY(180deg);
+} 
 
-        transform: rotateY(180deg);
-   } 
+.cartao-imagem {
+    width: 100%;
+    height: 65%; /* Limita a imagem para sobrar espaço para o texto */
+    object-fit: cover; /* Faz a imagem se adaptar sem distorcer */
+}
 
+/* Estilo extra para o texto ficar bonito dentro do cartão */
+.cartao p {
+    padding: 10px;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 16px;
+    margin: auto 0; /* Centraliza o texto verticalmente no espaço restante */
+}

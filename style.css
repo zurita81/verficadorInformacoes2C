@@ -34,6 +34,7 @@ section{
 
 } 
  .cartao{
+    margin: 20px;
     width: 260px;
     height: 200px;
  }
@@ -65,4 +66,5 @@ section{
    .cartao-verso{
 
         transform: rotateY(180deg);
-   }
+   } 
+
